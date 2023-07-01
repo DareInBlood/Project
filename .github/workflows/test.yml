@@ -25,6 +25,10 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Set execution permission for Cypress binary
+      run: |
+        chmod +x /home/runner/.cache/Cypress/12.16.0/Cypress/Cypress
+
     - name: Run Cypress tests
       run: |
-        npx cypress run --browser chrome --headless --cache-path /home/runner/.cache/Cypress || (echo "Cypress tests failed" && exit 1)
+        /home/runner/.cache/Cypress/12.16.0/Cypress/Cypress run --browser chrome --headless --cache-path /home/runner/.cache/Cypress || (echo "Cypress tests failed" && exit 1)
