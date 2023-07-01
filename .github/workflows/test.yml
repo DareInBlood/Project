@@ -16,6 +16,9 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Set execution permission for Cypress binary
+      if: ${{ runner.os == 'Windows' }}
+      run: icacls node_modules\\.bin\\cypress /grant Users:(RX)
+
     - name: Run Cypress tests
       run: npx cypress run
-
